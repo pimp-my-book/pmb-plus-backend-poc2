@@ -2,7 +2,7 @@ import {ApolloServer, gql} from "apollo-server-lambda";
 import {schema} from "./schema";
 import {resolvers} from "./resolvers";
 
-
+/*this is the config of the apollo server*/
 const server = new ApolloServer({
     typeDefs: schema,
     resolvers: resolvers,
