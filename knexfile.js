@@ -1,7 +1,7 @@
 const mysql = require('mysql')
 
 module.exports = {
-    dev: {
+   
         client: 'mysql',
         connection: {
             host: process.env.db_url,
@@ -10,5 +10,5 @@ module.exports = {
             database: process.env.db_name,
         },
         pool: {min:0, max: 10}
-    }
+
 }
