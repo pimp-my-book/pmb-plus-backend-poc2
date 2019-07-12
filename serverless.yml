@@ -21,19 +21,19 @@ provider:
   stage: dev
   region: us-east-1
   environment:
-    db_user: ${file(env.yml):${self:provider.db_user}}
-    db_name: ${file(env.yml):${self:provider.db_name}}
-    db_password: ${file(env.yml):${self:provider.db_password}}
-    db_port: ${file(env.yml):${self:provider.db_port}}
-    db_host: ${file(env.yml):${self:provider.db_host}}
+    db_user: ${file(env.yml):db_user}
+    db_name: ${file(env.yml):db_name}
+    db_password: ${file(env.yml):.db_password}
+    db_port: ${file(env.yml):db_port}
+    db_host: ${file(env.yml):.db_host}
   vpc:
     securityGroupIds:
-      - ${file(env.yml):${self:provider.security_group_id}}
+      - ${file(env.yml):security_group_id}
     subnetIds:
-      - ${file(env.yml):${self:provider.subnet1_id}}
-      - ${file(env.yml):${self:provider.subnet2_id}}
-      - ${file(env.yml):${self:provider.subnet3_id}}
-      - ${file(env.yml):${self:provider.subnet4_id}}
+      - ${file(env.yml):subnet1_id}
+      - ${file(env.yml):subnet2_id}
+      - ${file(env.yml):subnet3_id}
+      - ${file(env.yml):subnet4_id}
   # To load environment variables externally
   # rename env.example to env.yml and uncomment
   # the following line. Also, make sure to not
