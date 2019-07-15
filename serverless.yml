@@ -23,9 +23,9 @@ provider:
   environment:
     db_user: ${file(env.yml):db_user}
     db_name: ${file(env.yml):db_name}
-    db_password: ${file(env.yml):.db_password}
+    db_password: ${file(env.yml):db_password}
     db_port: ${file(env.yml):db_port}
-    db_host: ${file(env.yml):.db_host}
+    db_host: ${file(env.yml):db_host}
   vpc:
     securityGroupIds:
       - sg-bf84a7f4
