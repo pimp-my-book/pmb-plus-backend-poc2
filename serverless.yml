@@ -28,7 +28,7 @@ provider:
     db_host: ${file(env.yml):.db_host}
   vpc:
     securityGroupIds:
-      - ${file(env.yml):security_group_id}
+      - sg-bf84a7f4
     subnetIds:
       - ${file(env.yml):subnet1_id}
       - ${file(env.yml):subnet2_id}
