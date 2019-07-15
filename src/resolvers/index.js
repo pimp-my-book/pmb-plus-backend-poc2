@@ -6,7 +6,7 @@ export const resolvers = {
         hello: (root, args, context) => hello(args, context)
     },
     Mutation : {
-        addBook: (root, args, context) => hello(addBook, context)
+        addBook: (root, args, context) => addBook(args, context)
 
     }
 }
