@@ -3,9 +3,12 @@ const knex = require('knex')
 
 
 export const addBook = (args, context) => {
-    knex('books')
+    knex('Books')
     .insert({title: args.title, author: args.author})
     .then(book => {
-        return book
+        console.log(book)
+        return {
+            title: book.title
+        }
     })
 }
