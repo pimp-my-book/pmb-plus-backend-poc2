@@ -1,7 +1,6 @@
 
-exports.up = function(knex, Promise) {
-    return knex.schema
-      .createTable('Books', function(table){
+exports.up = function(knex) {
+    return knex.schema.createTable('Books', function(table){
           table.integer('book_id').primary();
           table.string('title').notNull();
           table.string('author').notNull();
@@ -9,9 +8,8 @@ exports.up = function(knex, Promise) {
   
 };
 
-exports.down = function(knex, Promise) {
-    return Promise.all([
-        knex.schema.dropTableIfExists('Books')
-    ])
+exports.down = function(knex) {
+    return knex.schema.dropTableIfExists('Books')
+    
   
 };

@@ -10,6 +10,9 @@ module.exports = {
             password: process.env.db_password,
             database: process.env.db_name,
         },
+        migrations: {
+          tableName: 'migrations'
+        },
         pool: {min:0, max: 10}
 
 }
