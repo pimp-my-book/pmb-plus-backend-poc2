@@ -15,7 +15,7 @@ type Query {
 
 
 type Mutation {
-    addBook( ID: String!,
+    addBook( 
         title: String!,
         author: String!): Book
 }
