@@ -1,6 +1,6 @@
 
 exports.up = function(knex) {
-    return knex.schema.createTable('Books', function(table){
+    return knex.schema.createTable('books', function(table){
           table.integer('book_id').primary();
           table.string('title').notNull();
           table.string('author').notNull();
@@ -9,7 +9,7 @@ exports.up = function(knex) {
 };
 
 exports.down = function(knex) {
-    return knex.schema.dropTableIfExists('Books')
+    return knex.schema.dropTableIfExists('books')
     
   
 };

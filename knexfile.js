@@ -11,7 +11,7 @@ module.exports = {
             database: process.env.db_name,
         },
         migrations: {
-            directory: __dirname + './migrations',
+            directory: __dirname + '/migrations',
           tableName: 'knex_migrations'
         },
         pool: {min:0, max: 10}
