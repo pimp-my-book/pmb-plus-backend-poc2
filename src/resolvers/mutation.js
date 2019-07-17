@@ -33,7 +33,11 @@ try{
     console.log(book)
     await client.end()
      
-    return book
+    return {
+        title: args.title,
+        author: args.author
+        
+    }
     
 
 } catch(e){
