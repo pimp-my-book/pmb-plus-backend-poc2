@@ -2,11 +2,10 @@ exports.init = async (client) => {
     await client.query(`
     CREATE TABLE IF NOT EXISTS books
     (
-        ID MEDIUMINT UNSIGNED not null AUTO_INCREMENT, 
-        title varchar(100) not null,
-        author varchar(100) not null,
-        PRIMARY KEY (ID)
-
-    )
+        id MEDIUMINT UNSIGNED not null AUTO_INCREMENT
+        title varchar(100) not null
+        author varchar(100) not null
+        PRIMARY KEY (id)
+    );
     `)
 }
