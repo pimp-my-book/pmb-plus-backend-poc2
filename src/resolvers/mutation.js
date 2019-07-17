@@ -12,7 +12,7 @@ var client = Client({
         host: 'marketplace.cluster-cnzzwx7w7f5y.us-east-1.rds.amazonaws.com',
         user: 'marketPlaceRoot',
         password: 'gX92Md0f8e0Lbr',
-        database: 'marketplace',
+        database: 'information_schema',
     }
 })
 
