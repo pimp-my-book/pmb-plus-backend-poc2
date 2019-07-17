@@ -25,17 +25,10 @@ try{
     await client.connect()
 
 
-    await client.query(`
-    CREATE TABLE  books (
-        id MEDIUMINT UNSIGNED not null AUTO_INCREMENT,
-        title varchar(100) not null,
-        author varchar(100) not null,
-        PRIMARY KEY (id)
-    );
-    `)
     
     let con = client.getClient()
     console.log(con)
+    console.log(args.title,args.author)
     let book = await client.query('INSERT INTO books (title,author) VALUES(?,?)', [args.title ,args.author ]);
     console.log(book)
     await client.end()
