@@ -37,6 +37,7 @@ try{
     let con = client.getClient()
     console.log(con)
     let book = await client.query('INSERT INTO books (title,author) VALUES(?,?)', [args.title ,args.author ]);
+    console.log(book)
     await client.end()
      
     return book
