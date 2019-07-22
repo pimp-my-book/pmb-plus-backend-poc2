@@ -24,15 +24,16 @@ var clientLocal = Client({
         database: 'pmbPlusDB',
     }
 })
-console.log(args.title)
-console.log(clientLocal.config)
 
+
+const databaseConnection = process.env.NODE_ENV === 'production' ? clientDev : clientLocal
+console.log(databaseConnection)
 
 try{
 
-    await clientLocal.connect()
+    await databaseConnection.connect()
 
-    await clientLocal.query(`
+    await databaseConnection.query(`
     CREATE TABLE IF NOT EXISTS books
     (
         id MEDIUMINT UNSIGNED not null AUTO_INCREMENT,
@@ -43,12 +44,11 @@ try{
     `)
 
     
-    let con = clientLocal.getClient()
-    console.log(con)
-    console.log(args.title,args.author)
-    let book = await clientLocal.query('INSERT INTO books (title,author) VALUES(?,?)', [args.title ,args.author ]);
-    console.log(book)
-    await clientLocal.end()
+    let con = databaseConnection.getClient()
+   
+    let book = await databaseConnection.query('INSERT INTO books (title,author) VALUES(?,?)', [args.title ,args.author ]);
+   
+    await databaseConnection.end()
      
     return {
         title: args.title,
