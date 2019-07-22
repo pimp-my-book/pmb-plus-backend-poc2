@@ -7,7 +7,7 @@ export const addBook = async (args, context) => {
     
     
 console.log(args.title)
-var client = Client({
+var clientDev = Client({
     config: {
         host: 'marketplace.cluster-cnzzwx7w7f5y.us-east-1.rds.amazonaws.com',
         user: 'marketPlaceRoot',
@@ -16,22 +16,39 @@ var client = Client({
     }
 })
 
-console.log(args.title)
-console.log(client.config)
+var clientLocal = Client({
+    config: {
+        host: 'pmbpluspocrds.cnzzwx7w7f5y.us-east-1.rds.amazonaws.com',
+        user: 'adminLocalPlus',
+        password: '83uzbZ0ePuDDUi',
+        database: 'pmbPlusDB',
+    }
+})
 
+
+const databaseConnection = process.env.NODE_ENV === 'production' ? clientDev : clientLocal
+console.log(databaseConnection)
 
 try{
 
-    await client.connect()
+    await databaseConnection.connect()
 
+    await databaseConnection.query(`
+    CREATE TABLE IF NOT EXISTS books
+    (
+        id MEDIUMINT UNSIGNED not null AUTO_INCREMENT,
+        title varchar(100) not null,
+        author varchar(100) not null,
+        PRIMARY KEY (id)
+    );
+    `)
 
     
-    let con = client.getClient()
-    console.log(con)
-    console.log(args.title,args.author)
-    let book = await client.query('INSERT INTO books (title,author) VALUES(?,?)', [args.title ,args.author ]);
-    console.log(book)
-    await client.end()
+    let con = databaseConnection.getClient()
+   
+    let book = await databaseConnection.query('INSERT INTO books (title,author) VALUES(?,?)', [args.title ,args.author ]);
+   
+    await databaseConnection.end()
      
     return {
         title: args.title,
