@@ -7,7 +7,7 @@ export const addBook = async (args, context) => {
     
     
 console.log(args.title)
-var client = Client({
+var clientDev = Client({
     config: {
         host: 'marketplace.cluster-cnzzwx7w7f5y.us-east-1.rds.amazonaws.com',
         user: 'marketPlaceRoot',
@@ -16,6 +16,14 @@ var client = Client({
     }
 })
 
+var clientLocal = Client({
+    config: {
+        host: 'pmbpluspocrds.cnzzwx7w7f5y.us-east-1.rds.amazonaws.com',
+        user: 'adminLocalPlus',
+        password: '83uzbZ0ePuDDUi',
+        database: 'pmbPlusDB',
+    }
+})
 console.log(args.title)
 console.log(client.config)
 
