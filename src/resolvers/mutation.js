@@ -2,7 +2,6 @@
 
 var common = require('./aurora')
 const Client = require('serverless-mysql')
-const mysql = require('mysql')
 export const addBook = async (args, context) => {
     
     
@@ -49,7 +48,7 @@ try{
     let book = await databaseConnection.query('INSERT INTO books (title,author) VALUES(?,?)', [args.title ,args.author ]);
    
     await databaseConnection.end()
-     
+      
     return {
         title: args.title,
         author: args.author
