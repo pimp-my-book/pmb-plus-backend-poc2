@@ -9,6 +9,7 @@ plugins:
 # serverless-webpack configuration
 # Enable auto-packing of external modules
 custom:
+  stage: ${opt:stage, self:provider.stage}
   webpack:
     webpackConfig: ./webpack.config.js
     includeModules: true
@@ -22,7 +23,7 @@ provider:
   stage: dev
   region: us-east-1
   environment:
-    db_user: ${file(env.yml):db_user}
+    db_user: ${self:custom.environment.db_user}
     db_name: ${file(env.yml):db_name}
     db_password: ${file(env.yml):db_password}
     db_port: ${file(env.yml):db_port}
