@@ -1,5 +1,23 @@
 const schema = `
-
+"""
+Add Book input
+"""
+input addBookInput {
+    
+    productName: String!
+    productDescription: String!
+    
+    price: String!
+    vendor: String!
+    image: String!
+    
+    title: String!
+    author: String!
+    ISBN: String!
+    grade: String!
+    courses: [String]!
+    univeristies: [String]!
+}
 
 """
 Buying List Type
