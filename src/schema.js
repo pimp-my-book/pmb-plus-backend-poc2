@@ -15,8 +15,7 @@ input addBookInput {
     author: String!
     ISBN: String!
     grade: String!
-    courses: [String]!
-    univeristies: [String]!
+  
 }
 
 """
@@ -25,7 +24,7 @@ Buying List Type
 type BuyingList {
     ID: Int!
     store: String!
-    books:[BookList]!
+    books:[Book]!
 }
 
 """
@@ -71,8 +70,7 @@ type Book implements Product {
     author: String!
     ISBN: String!
     grade: String!
-    courses: [Course]!
-    univeristies: [University]!
+   
 }
 type S3Payload {
     signedRequest: String!,
@@ -85,6 +83,7 @@ type Mutation {
 }
 type Query {
      hello: String!
+     connection: String
      """ 
      A query to get all the books a vendor has posted. 
      """
