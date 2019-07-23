@@ -1,7 +1,7 @@
 
 
 var common = require('./aurora')
-import {db} from '../../libs/db'
+import db from '../../libs/db'
 
 export const addBook = async (args, context) => {
     
@@ -12,9 +12,9 @@ console.log(db)
 
 try{
 
-    await databaseConnection.connect()
+    await db.connect()
 
-    await databaseConnection.query(`
+    await db.query(`
     CREATE TABLE IF NOT EXISTS books
     (
         id MEDIUMINT UNSIGNED not null AUTO_INCREMENT,
@@ -25,11 +25,11 @@ try{
     `)
 
     
-    let con = databaseConnection.getClient()
+    let con = db.getClient()
    
-    let book = await databaseConnection.query('INSERT INTO books (title,author) VALUES(?,?)', [args.title ,args.author ]);
+    let book = await db.query('INSERT INTO books (title,author) VALUES(?,?)', [args.title ,args.author ]);
    
-    await databaseConnection.end()
+    await db.end()
       
     return {
         title: args.title,

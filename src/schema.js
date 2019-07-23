@@ -78,7 +78,8 @@ type S3Payload {
 }
 type Mutation {
     
-    addBook(input:addBookInput) : Book
+    addBook(title: String!
+        author: String!) : Book
     addBooks(fileName: String!, fileType: String!): S3Payload!
 }
 type Query {
