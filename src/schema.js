@@ -61,9 +61,7 @@ type S3Payload {
     url: String!
 }
 type Mutation {
-    addUniversity(input: addUniversityInput): University
-    addCourse(input: addCoursesInput): Course
-    addDegree(input: addDegreeInput): Degree
+    
     addBook(input:addBookInput) : Book
     addBooks(fileName: String!, fileType: String!): S3Payload!
 }
