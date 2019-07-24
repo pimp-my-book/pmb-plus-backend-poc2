@@ -6,19 +6,28 @@ exports.init = async (client) => {
      await client.query(`
      CREATE TABLE IF NOT EXISTS vendors
      (
-         id MEDIUMINT UNSIGNED not null AUTO_INCREMENT,
+         vendorId MEDIUMINT UNSIGNED not null AUTO_INCREMENT,
          created DATETIME DEFAULT,
          vendorName varchar(100) not null,
          vendorDescription varchar(100),
          vendorWebsite varchar(100),
          vendorAddress varchar(100) not null,
          vendorEmail varchar(100) not null,
-         PRIMARY KEY (id)
+         PRIMARY KEY (vendorId)
      )
      `);
+
     //inventory
 
+   await client.query(`
+     CREATE TABLE IF NOT EXISTS inventory
+     (
+        inventoryId MEDIUMINT UNSIGNED not null AUTO_INCREMENT primary key,
+        quantity int,
+        sold int, 
 
+     )
+   `);
 
     //products
 
