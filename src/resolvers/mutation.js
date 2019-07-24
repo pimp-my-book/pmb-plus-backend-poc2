@@ -1,39 +1,20 @@
 
 
 var common = require('./aurora')
-const Client = require('serverless-mysql')
-const mysql = require('mysql')
+import db from '../../libs/db'
+
 export const addBook = async (args, context) => {
     
     
 console.log(args.title)
-var clientDev = Client({
-    config: {
-        host: 'marketplace.cluster-cnzzwx7w7f5y.us-east-1.rds.amazonaws.com',
-        user: 'marketPlaceRoot',
-        password: 'gX92Md0f8e0Lbr',
-        database: 'test',
-    }
-})
 
-var clientLocal = Client({
-    config: {
-        host: 'pmbpluspocrds.cnzzwx7w7f5y.us-east-1.rds.amazonaws.com',
-        user: 'adminLocalPlus',
-        password: '83uzbZ0ePuDDUi',
-        database: 'pmbPlusDB',
-    }
-})
-
-
-const databaseConnection = process.env.NODE_ENV === 'production' ? clientDev : clientLocal
-console.log(databaseConnection)
+console.log(db)
 
 try{
 
-    await databaseConnection.connect()
+    await db.connect()
 
-    await databaseConnection.query(`
+    await db.query(`
     CREATE TABLE IF NOT EXISTS books
     (
         id MEDIUMINT UNSIGNED not null AUTO_INCREMENT,
@@ -44,12 +25,12 @@ try{
     `)
 
     
-    let con = databaseConnection.getClient()
+    let con = db.getClient()
    
-    let book = await databaseConnection.query('INSERT INTO books (title,author) VALUES(?,?)', [args.title ,args.author ]);
+    let book = await db.query('INSERT INTO books (title,author) VALUES(?,?)', [args.title ,args.author ]);
    
-    await databaseConnection.end()
-     
+    await db.end()
+      
     return {
         title: args.title,
         author: args.author

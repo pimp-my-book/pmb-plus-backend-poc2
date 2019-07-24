@@ -9,11 +9,13 @@ plugins:
 # serverless-webpack configuration
 # Enable auto-packing of external modules
 custom:
+  stage: ${opt:stage, self:provider.stage}
   webpack:
     webpackConfig: ./webpack.config.js
     includeModules: true
   serverless-offline:
     port: 4000
+  environment: ${file(env.yml):${self:custom.stage}, file(env.yml):default}
 
 provider:
   name: aws
@@ -21,19 +23,19 @@ provider:
   stage: dev
   region: us-east-1
   environment:
-    db_user: ${file(env.yml):db_user}
-    db_name: ${file(env.yml):db_name}
-    db_password: ${file(env.yml):db_password}
-    db_port: ${file(env.yml):db_port}
-    db_host: ${file(env.yml):db_host}
+    db_user: ${self:custom.environment.db_user}
+    db_name: ${self:custom.environment.db_name}
+    db_password: ${self:custom.environment.db_password}
+    db_port: ${self:custom.environment.db_port}
+    db_host: ${self:custom.environment.db_host}
   vpc:
     securityGroupIds:
-      - sg-bf84a7f4
+      - ${self:custom.environment.security_group_id}
     subnetIds:
-      - subnet-2490611a
-      - subnet-71832016
-      - subnet-bcef99f6
-      - subnet-020dae5e
+      - ${self:custom.environment.subnet1_id}
+      - ${self:custom.environment.subnet2_id}
+      - ${self:custom.environment.subnet3_id}
+      - ${self:custom.environment.subnet4_id}
   # To load environment variables externally
   # rename env.example to env.yml and uncomment
   # the following line. Also, make sure to not
