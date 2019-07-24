@@ -1,6 +1,6 @@
 
 
-var common = require('./aurora')
+var common = require('../database/aurora')
 import db from '../../libs/db'
 
 export const addBook = async (args, context) => {
