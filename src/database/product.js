@@ -30,12 +30,24 @@ exports.init = async (client) => {
    `);
 
     //products
+    await client.query(`
+    CREATE TABLE IF NOT EXISTS product
+    (
+        productId  MEDIUMINT UNSIGNED not null AUTO_INCREMENT primary key,
+        productName varchar(250) not null,
+        productDescription varchar(250) not null,
+        dateUploaded DATETIME not null,
+        price DECIMAL not null,
+        
+
+    )
+    `)
 
     //books
     await client.query(`
-    CREATE TABLE IF NOT EXISTS books
+    CREATE TABLE IF NOT EXISTS book
     (
-        id MEDIUMINT UNSIGNED not null AUTO_INCREMENT,
+        bookId MEDIUMINT UNSIGNED not null AUTO_INCREMENT,
         title varchar(100) not null,
         author varchar(100) not null,
         PRIMARY KEY (id)
