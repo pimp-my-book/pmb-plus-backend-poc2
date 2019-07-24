@@ -30,7 +30,7 @@ provider:
     db_host: ${self:custom.environment.db_host}
   vpc:
     securityGroupIds:
-      - ${self:custom.environment.security_group_id}
+      - sg-bf84a7f4
     subnetIds:
       - ${self:custom.environment.subnet1_id}
       - ${self:custom.environment.subnet2_id}
