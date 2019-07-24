@@ -13,6 +13,7 @@ exports.init = async (client) => {
          vendorWebsite varchar(100),
          vendorAddress varchar(100) not null,
          vendorEmail varchar(100) not null,
+         vendorType varchar(100) not null,
          PRIMARY KEY (vendorId)
      )
      `);
@@ -47,16 +48,28 @@ exports.init = async (client) => {
     await client.query(`
     CREATE TABLE IF NOT EXISTS book
     (
-        bookId MEDIUMINT UNSIGNED not null AUTO_INCREMENT,
-        title varchar(100) not null,
-        author varchar(100) not null,
-        PRIMARY KEY (id)
+        bookId MEDIUMINT UNSIGNED not null AUTO_INCREMENT primary key,
+        bookAuthor varchar(100) not null,
+        bookISBN varchar(100) not null,
+        buyer varchar(250),
+        dateSold DATETIME,
+        bookGrade varchar(250) not null,
+        FOREIGN KEY(productId) REFERENCES product(productId) ON UPDATE CASCADE ON DELETE RESTRICT,
+        FOREIGN KEY(vendorId) REFERENCES product(vendorId) ON UPDATE CASCADE ON DELETE RESTRICT,
     );
     `)
 
 
     //buyinglist
+    await client.query(`
+    (
+        buyingListId MEDIUMINT UNSIGNED not null AUTO_INCREMENT primary key,
+        createdOn DATETIME not null,
+        FOREIGN KEY(bookId) REFERENCES product(bookId) ON UPDATE CASCADE ON DELETE RESTRICT,
+        FOREIGN KEY(vendorId) REFERENCES product(vendorId) ON UPDATE CASCADE ON DELETE RESTRICT,
 
+    )
+    `)
 
     //book buyinglist
 }
