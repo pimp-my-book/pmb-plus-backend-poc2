@@ -44,6 +44,24 @@ try{
 
 }
 
+export default addVendor = async ({input: args}, context) => {
+
+    await common.init(db)
+
+    const addVendorinput = {
+    vendorName: args.vendorName,
+
+    vendorDescription: args.vendorDescription,
+
+    vendorWebsite: args.vendorWebsite,
+        vendorAddress: args.vendorAddress,
+
+    vendorEmail: args.vendorEmail,
+
+    }
+    let vendor = await db.query('', [addVendorinput])
+}
+
 
 /*n 34 narsing 3 parow north
 
