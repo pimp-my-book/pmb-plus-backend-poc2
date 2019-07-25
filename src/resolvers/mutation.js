@@ -44,24 +44,26 @@ try{
 
 }
 
-export default addVendor = async ({input: args}, context) => {
+export const addVendor = async ({input: args}, context) => {
 
     await common.init(db)
 
-    const addVendorinput = {
-    vendorName: args.vendorName,
-
-    vendorDescription: args.vendorDescription,
-
-    vendorWebsite: args.vendorWebsite,
-        vendorAddress: args.vendorAddress,
-
-    vendorEmail: args.vendorEmail,
-
-    }
-    let vendor = await db.query('INSERT INTO vendors (vendorName,vendorDescription,vendorWebsite,vendorAddress,vendorEmail) VALUES(?,?,?,?,?)', [addVendorinput])
-
-    await db.end()
+    try{
+        const addVendorinput = {
+            vendorName: args.vendorName,
+        
+            vendorDescription: args.vendorDescription,
+        
+            vendorWebsite: args.vendorWebsite,
+                vendorAddress: args.vendorAddress,
+        
+            vendorEmail: args.vendorEmail,
+        
+            }
+            console.log(addVendorinput)
+            let vendor = await db.query('INSERT INTO vendors (vendorName,vendorDescription,vendorWebsite,vendorAddress,vendorEmail) VALUES(?, ?, ?, ?, ?)', [addVendorinput.vendorName, addVendorinput.vendorDescription, addVendorinput.vendorWebsite, addVendorinput.vendorAddress, addVendorinput.vendorEmail])
+   
+            await db.end()
     return {
         vendorName: args.vendorName,
         vendorAddress: args.vendorAddress,
@@ -70,6 +72,13 @@ export default addVendor = async ({input: args}, context) => {
         vendorWebsite: args.vendorWebsite
 
     }
+   
+   
+        } catch(e){
+        return e
+    }
+
+    
 }
 
 

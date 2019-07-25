@@ -4,28 +4,29 @@ exports.init = async (client) => {
 
     //vendor
      await client.query(`
-     CREATE TABLE IF NOT EXISTS vendors
+     CREATE TABLE IF NOT EXISTS vendor
      (
          vendorId MEDIUMINT UNSIGNED not null AUTO_INCREMENT,
-         created DATETIME DEFAULT,
+         createdAt TIMESTAMP not null,
          vendorName varchar(100) not null,
          vendorDescription varchar(100),
          vendorWebsite varchar(100),
          vendorAddress varchar(100) not null,
          vendorEmail varchar(100) not null,
-        
-         PRIMARY KEY (vendorId)
-     )
-     `);
+         PRIMARY KEY (vendorId)         
+     );
+     `)
 
     //inventory
+
+    /*
 
    await client.query(`
      CREATE TABLE IF NOT EXISTS inventory
      (
         inventoryId MEDIUMINT UNSIGNED not null AUTO_INCREMENT primary key,
         quantity int,
-        sold int, 
+        sold int 
 
      )
    `);
@@ -38,7 +39,7 @@ exports.init = async (client) => {
         productName varchar(250) not null,
         productDescription varchar(250) not null,
         dateUploaded DATETIME not null,
-        price DECIMAL not null,
+        price DECIMAL not null
         
 
     )
@@ -55,7 +56,7 @@ exports.init = async (client) => {
         dateSold DATETIME,
         bookGrade varchar(250) not null,
         FOREIGN KEY(productId) REFERENCES product(productId) ON UPDATE CASCADE ON DELETE RESTRICT,
-        FOREIGN KEY(vendorId) REFERENCES product(vendorId) ON UPDATE CASCADE ON DELETE RESTRICT,
+        FOREIGN KEY(vendorId) REFERENCES product(vendorId) ON UPDATE CASCADE ON DELETE RESTRICT
     );
     `)
 
@@ -66,10 +67,11 @@ exports.init = async (client) => {
         buyingListId MEDIUMINT UNSIGNED not null AUTO_INCREMENT primary key,
         createdOn DATETIME not null,
         FOREIGN KEY(bookId) REFERENCES product(bookId) ON UPDATE CASCADE ON DELETE RESTRICT,
-        FOREIGN KEY(vendorId) REFERENCES product(vendorId) ON UPDATE CASCADE ON DELETE RESTRICT,
+        FOREIGN KEY(vendorId) REFERENCES product(vendorId) ON UPDATE CASCADE ON DELETE RESTRICT
 
     )
     `)
 
+    */
     //book buyinglist
 }
