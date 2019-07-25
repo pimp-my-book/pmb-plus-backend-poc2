@@ -18,6 +18,18 @@ input addBookInput {
   
 }
 
+
+"""
+Add Vendor Input
+"""
+input addVendorInput {
+    vendorName: String!
+    vendorDescription: String!
+    vendorWebsite: String
+    vendorAddress: String!
+    vendorEmail: String!
+}
+
 """
 Buying List Type
 """
@@ -26,6 +38,8 @@ type BuyingList {
     store: String!
     books:[Book]!
 }
+
+
 
 """
 Vendor Type
