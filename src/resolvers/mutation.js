@@ -1,6 +1,6 @@
 
 
-var common = require('../database/aurora')
+var common = require('../database/product')
 import db from '../../libs/db'
 
 export const addBook = async (args, context) => {
@@ -59,7 +59,17 @@ export default addVendor = async ({input: args}, context) => {
     vendorEmail: args.vendorEmail,
 
     }
-    let vendor = await db.query('', [addVendorinput])
+    let vendor = await db.query('INSERT INTO vendors (vendorName,vendorDescription,vendorWebsite,vendorAddress,vendorEmail) VALUES(?,?,?,?,?)', [addVendorinput])
+
+    await db.end()
+    return {
+        vendorName: args.vendorName,
+        vendorAddress: args.vendorAddress,
+        vendorEmail: args.vendorEmail,
+        vendorDescription: args.vendorDescription,
+        vendorWebsite: args.vendorWebsite
+
+    }
 }
 
 
