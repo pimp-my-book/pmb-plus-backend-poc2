@@ -94,6 +94,7 @@ type Mutation {
     
     addBook(title: String!
         author: String!) : Book
+    addVendor(input: addVendorInput): Vendor
     addBooks(fileName: String!, fileType: String!): S3Payload!
 }
 type Query {
