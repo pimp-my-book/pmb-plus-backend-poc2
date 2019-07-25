@@ -13,7 +13,7 @@ exports.init = async (client) => {
          vendorWebsite varchar(100),
          vendorAddress varchar(100) not null,
          vendorEmail varchar(100) not null,
-         vendorType varchar(100) not null,
+        
          PRIMARY KEY (vendorId)
      )
      `);
