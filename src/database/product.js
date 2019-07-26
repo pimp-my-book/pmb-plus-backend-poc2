@@ -49,8 +49,9 @@ exports.init = async (client) => {
         dateUploaded DATETIME not null,
         price DECIMAL not null,
         productId int not null,
+        vendorId in not null,
         FOREIGN KEY (productId) REFERENCES product(productId) ,
-        FOREIGN KEY(vendorId_fk) REFERENCES vendor(vendorId)
+        FOREIGN KEY(vendorId) REFERENCES vendor(vendorId)
     );
     `)
  //inventory
