@@ -17,20 +17,11 @@ exports.init = async (client) => {
      );
      `)
 
-    //inventory
+   
 
     
 
-   await client.query(`
-     CREATE TABLE IF NOT EXISTS inventory
-     (
-        inventoryId MEDIUMINT UNSIGNED not null AUTO_INCREMENT primary key,
-        FOREIGN KEY(productId) REFERENCES product(productId) ON UPDATE CASCADE ON DELETE RESTRICT,
-        quantity int,
-        sold int 
-
-     )
-   `);
+   
 
     //products
     await client.query(`
@@ -38,7 +29,7 @@ exports.init = async (client) => {
     (
         productId  MEDIUMINT UNSIGNED not null AUTO_INCREMENT primary key,
         productName varchar(250) not null,
-        productDescription varchar(250) not null,
+        productDescription varchar(250) not null
        
         
 
@@ -57,17 +48,33 @@ exports.init = async (client) => {
         bookGrade varchar(250) not null,
         dateUploaded DATETIME not null,
         price DECIMAL not null,
-        FOREIGN KEY(productId) REFERENCES product(productId) ON UPDATE CASCADE ON DELETE RESTRICT,
-        FOREIGN KEY(vendorId) REFERENCES product(vendorId) ON UPDATE CASCADE ON DELETE RESTRICT
+        productId int not null,
+        FOREIGN KEY (productId) REFERENCES product(productId) ,
+        FOREIGN KEY(vendorId_fk) REFERENCES vendor(vendorId)
     );
     `)
+ //inventory
 
+    await client.query(`
+     CREATE TABLE IF NOT EXISTS inventory
+     (
+        inventoryId MEDIUMINT UNSIGNED not null AUTO_INCREMENT primary key,
+        productId int not null,
+        FOREIGN KEY(productId) REFERENCES product(productId) ,
+        quantity int,
+        sold int 
+
+     )
+   `);
 
     //buyinglist
     await client.query(`
+    CREATE TABLE IF NOT EXISTS buyingList
     (
         buyingListId MEDIUMINT UNSIGNED not null AUTO_INCREMENT primary key,
         createdOn DATETIME not null,
+        vendorId int not null,
+        bookId int not null,
         FOREIGN KEY(bookId) REFERENCES product(bookId) ON UPDATE CASCADE ON DELETE RESTRICT,
         FOREIGN KEY(vendorId) REFERENCES product(vendorId) ON UPDATE CASCADE ON DELETE RESTRICT
 
