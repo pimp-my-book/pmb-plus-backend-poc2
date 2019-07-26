@@ -19,12 +19,13 @@ exports.init = async (client) => {
 
     //inventory
 
-    /*
+    
 
    await client.query(`
      CREATE TABLE IF NOT EXISTS inventory
      (
         inventoryId MEDIUMINT UNSIGNED not null AUTO_INCREMENT primary key,
+        FOREIGN KEY(productId) REFERENCES product(productId) ON UPDATE CASCADE ON DELETE RESTRICT,
         quantity int,
         sold int 
 
@@ -38,8 +39,7 @@ exports.init = async (client) => {
         productId  MEDIUMINT UNSIGNED not null AUTO_INCREMENT primary key,
         productName varchar(250) not null,
         productDescription varchar(250) not null,
-        dateUploaded DATETIME not null,
-        price DECIMAL not null
+       
         
 
     )
@@ -55,6 +55,8 @@ exports.init = async (client) => {
         buyer varchar(250),
         dateSold DATETIME,
         bookGrade varchar(250) not null,
+        dateUploaded DATETIME not null,
+        price DECIMAL not null,
         FOREIGN KEY(productId) REFERENCES product(productId) ON UPDATE CASCADE ON DELETE RESTRICT,
         FOREIGN KEY(vendorId) REFERENCES product(vendorId) ON UPDATE CASCADE ON DELETE RESTRICT
     );
@@ -72,6 +74,6 @@ exports.init = async (client) => {
     )
     `)
 
-    */
+    
     //book buyinglist
 }
