@@ -104,6 +104,7 @@ type Query {
      A query to get all the books a vendor has posted. 
      """
      getBooksByVendor(vendor:String!): [Book]
+     getAllBooks: [Book]
 }
 `
 
