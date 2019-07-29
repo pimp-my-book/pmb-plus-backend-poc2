@@ -10,7 +10,7 @@ input addBookInput {
     price: String!
     vendor: String!
     image: String!
-    
+    edition: String!
     title: String!
     author: String!
     ISBN: String!
@@ -83,6 +83,7 @@ type Book implements Product {
     title: String!
     author: String!
     ISBN: String!
+    edition: String!
     grade: String!
    
 }
