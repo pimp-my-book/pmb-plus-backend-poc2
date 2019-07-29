@@ -49,7 +49,7 @@ exports.init = async (client) => {
         dateUploaded DATETIME not null,
         price DECIMAL not null,
         productId MEDIUMINT UNSIGNED not null,
-        vendorId INT MEDIUMINT UNSIGNED not nul,
+        vendorId INT MEDIUMINT UNSIGNED not null,
         FOREIGN KEY (productId) REFERENCES product(productId) ON UPDATE CASCADE ON DELETE RESTRICT,
         FOREIGN KEY(vendorId) REFERENCES vendor(vendorId) ON UPDATE CASCADE ON DELETE RESTRICT
     );
@@ -60,7 +60,7 @@ exports.init = async (client) => {
      CREATE TABLE IF NOT EXISTS inventory
      (
         inventoryId MEDIUMINT UNSIGNED not null AUTO_INCREMENT primary key,
-        productId MEDIUMINT UNSIGNED not nul,
+        productId MEDIUMINT UNSIGNED not null,
         FOREIGN KEY(productId) REFERENCES product(productId) ,
         quantity int,
         sold int 
@@ -75,7 +75,7 @@ exports.init = async (client) => {
         buyingListId MEDIUMINT UNSIGNED not null AUTO_INCREMENT primary key,
         createdOn DATETIME not null,
         vendorId MEDIUMINT UNSIGNED not null,
-        bookId MEDIUMINT UNSIGNED not nul,
+        bookId MEDIUMINT UNSIGNED not null,
         FOREIGN KEY(bookId) REFERENCES product(bookId) ON UPDATE CASCADE ON DELETE RESTRICT,
         FOREIGN KEY(vendorId) REFERENCES product(vendorId) ON UPDATE CASCADE ON DELETE RESTRICT
 
