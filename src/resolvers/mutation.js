@@ -15,14 +15,14 @@ try {
         price: args.price,
         vendor: args.vendor,
         image: args.image,
-        
+        bookEdition: args.bookEdition,
         title: args.productName,
         author: args.author,
         ISBN: args.ISBN,
         grade: args.grade
     }
 
-   let book = await db.query(`INSERT INTO book (bookAuthor, bookISBN , buyer,bookGrade, productId, vendorId, bookTitle, price) VALUES(?,?,?,?,?,?,?)`, [
+   let book = await db.query(`INSERT INTO book (bookAuthor, bookISBN , buyer,bookGrade, productId, vendorId, bookTitle, price, bookEdition) VALUES(?,?,?,?,?,?,?,?,?)`, [
        addBookInput.author,
        addBookInput.ISBN,
        "Tahmir Hassish",
@@ -30,7 +30,8 @@ try {
        1,
        addBookInput.vendor,
        addBookInput.productName,
-       addBookInput.price
+       addBookInput.price,
+       addBookInput.bookEdition
    ])
 
    await db.end()
