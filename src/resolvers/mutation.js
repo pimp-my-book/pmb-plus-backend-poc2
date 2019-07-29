@@ -22,14 +22,15 @@ try {
         grade: args.grade
     }
 
-   let book = await db.query(`INSERT INTO book (bookAuthor, bookISBN , buyer,bookGrade, productId, vendorId, bookTitle) VALUES(?,?,?,?,?,?,?)`, [
+   let book = await db.query(`INSERT INTO book (bookAuthor, bookISBN , buyer,bookGrade, productId, vendorId, bookTitle, price) VALUES(?,?,?,?,?,?,?)`, [
        addBookInput.author,
        addBookInput.ISBN,
        "Tahmir Hassish",
        addBookInput.grade,
        1,
        addBookInput.vendor,
-       addBookInput.productName
+       addBookInput.productName,
+       addBookInput.price
    ])
 
    await db.end()
