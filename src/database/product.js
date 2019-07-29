@@ -76,8 +76,8 @@ exports.init = async (client) => {
         createdOn DATETIME not null,
         vendorId MEDIUMINT UNSIGNED not null,
         bookId MEDIUMINT UNSIGNED not null,
-        FOREIGN KEY(bookId) REFERENCES product(bookId) ON UPDATE CASCADE ON DELETE RESTRICT,
-        FOREIGN KEY(vendorId) REFERENCES product(vendorId) ON UPDATE CASCADE ON DELETE RESTRICT
+        FOREIGN KEY(bookId) REFERENCES book(bookId) ON UPDATE CASCADE ON DELETE RESTRICT,
+        FOREIGN KEY(vendorId) REFERENCES vendor(vendorId) ON UPDATE CASCADE ON DELETE RESTRICT
 
     )
     `)
