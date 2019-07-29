@@ -3,9 +3,53 @@
 var common = require('../database/product')
 import db from '../../libs/db'
 
-export const addBook = async (args, context) => {
+export const addBook = async ({input: args}, context) => {
     
+await common.init(db)
 
+try {
+    const addBookInput ={
+        productName: args.productName,
+        productDescription: args.productDescription,
+        
+        price: args.price,
+        vendor: args.vendor,
+        image: args.image,
+        
+        title: args.title,
+        author: args.author,
+        ISBN: args.ISBN,
+        grade: args.grade
+    }
+
+   let book = await db.query(`INSERT INTO book (bookAuthor, bookISBN , buyer,bookGrade, productId, vendorId, bookTitle) VALUES(?,?,?,?,?,?,?)`, [
+       addBookInput.author,
+       addBookInput.ISBN,
+       "Tahmir Hassish",
+       addBookInput.grade,
+       1,
+       addBookInput.vendor,
+       addBookInput.productName
+   ])
+
+   await db.end()
+
+   return {
+    productName: args.productName,
+    productDescription: args.productDescription,
+    
+    price: args.price,
+    vendor: args.vendor,
+    image: args.image,
+    
+    title: args.title,
+    author: args.author,
+    ISBN: args.ISBN,
+    grade: args.grade
+   }
+} catch (e){
+    return e
+}
 
 }
 
@@ -26,7 +70,7 @@ export const addVendor = async ({input: args}, context) => {
         
             }
             console.log(addVendorinput)
-            let vendor = await db.query('INSERT INTO vendors (vendorName,vendorDescription,vendorWebsite,vendorAddress,vendorEmail) VALUES(?, ?, ?, ?, ?)', [addVendorinput.vendorName, addVendorinput.vendorDescription, addVendorinput.vendorWebsite, addVendorinput.vendorAddress, addVendorinput.vendorEmail])
+            let vendor = await db.query('INSERT INTO vendor (vendorName,vendorDescription,vendorWebsite,vendorAddress,vendorEmail) VALUES(?, ?, ?, ?, ?)', [addVendorinput.vendorName, addVendorinput.vendorDescription, addVendorinput.vendorWebsite, addVendorinput.vendorAddress, addVendorinput.vendorEmail])
    
             await db.end()
     return {
