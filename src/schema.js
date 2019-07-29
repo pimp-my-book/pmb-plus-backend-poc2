@@ -92,8 +92,7 @@ type S3Payload {
 }
 type Mutation {
     
-    addBook(title: String!
-        author: String!) : Book
+    addBook(input: addBookInput) : Book
     addVendor(input: addVendorInput): Vendor
     addBooks(fileName: String!, fileType: String!): S3Payload!
 }
