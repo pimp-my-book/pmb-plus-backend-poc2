@@ -14,5 +14,7 @@ export const getAllBooks = async (args, context) => {
 
         await db.end()
         return allBooks
+    } catch (e){
+        return e
     }
 }
