@@ -48,6 +48,7 @@ exports.init = async (client) => {
         bookGrade varchar(250) not null,
         dateUploaded DATETIME not null,
         price DECIMAL not null,
+        bookEdition varchar(250) not null,
         productId MEDIUMINT UNSIGNED not null,
         vendorId  MEDIUMINT UNSIGNED not null,
         FOREIGN KEY (productId) REFERENCES product(productId) ON UPDATE CASCADE ON DELETE RESTRICT,
