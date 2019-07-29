@@ -16,7 +16,7 @@ try {
         vendor: args.vendor,
         image: args.image,
         
-        title: args.title,
+        title: args.productName,
         author: args.author,
         ISBN: args.ISBN,
         grade: args.grade
