@@ -69,12 +69,10 @@ interface Product {
     
 }
 """
-A book type that is an extension of a product
+A book type 
 """
-type Book implements Product {
+type Book  {
     ID: Int!
-    productName: String!
-    productDescription: String!
     dateUploaded: String!
     price: String!
     vendor: String!
