@@ -5,42 +5,7 @@ import db from '../../libs/db'
 
 export const addBook = async (args, context) => {
     
-    
-console.log(args.title)
 
-console.log(db)
-
-try{
-
-    await db.connect()
-
-    await db.query(`
-    CREATE TABLE IF NOT EXISTS books
-    (
-        id MEDIUMINT UNSIGNED not null AUTO_INCREMENT,
-        title varchar(100) not null,
-        author varchar(100) not null,
-        PRIMARY KEY (id)
-    );
-    `)
-
-    
-    let con = db.getClient()
-   
-    let book = await db.query('INSERT INTO books (title,author) VALUES(?,?)', [args.title ,args.author ]);
-   
-    await db.end()
-      
-    return {
-        title: args.title,
-        author: args.author
-        
-    }
-    
-
-} catch(e){
-    return e
-}
 
 }
 
