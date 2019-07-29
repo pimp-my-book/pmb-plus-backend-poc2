@@ -49,7 +49,7 @@ exports.init = async (client) => {
         dateUploaded DATETIME not null,
         price DECIMAL not null,
         productId MEDIUMINT UNSIGNED not null,
-        vendorId INT MEDIUMINT UNSIGNED not null,
+        vendorId  MEDIUMINT UNSIGNED not null,
         FOREIGN KEY (productId) REFERENCES product(productId) ON UPDATE CASCADE ON DELETE RESTRICT,
         FOREIGN KEY(vendorId) REFERENCES vendor(vendorId) ON UPDATE CASCADE ON DELETE RESTRICT
     );
