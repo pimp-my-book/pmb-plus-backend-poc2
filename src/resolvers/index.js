@@ -10,5 +10,10 @@ export const resolvers = {
     Mutation : {
         addBook: (root, args, context) => addBook(args, context),
         addVendor: (root, {input:args}, context) => addVendor({input:args}, context)
+    },
+    Product: {
+        __resolveType: parent => {
+            return "Book"
+        }
     }
 }
