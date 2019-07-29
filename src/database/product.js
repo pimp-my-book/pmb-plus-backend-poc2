@@ -48,10 +48,10 @@ exports.init = async (client) => {
         bookGrade varchar(250) not null,
         dateUploaded DATETIME not null,
         price DECIMAL not null,
-        productId int not null,
-        vendorId in not null,
-        FOREIGN KEY (productId) REFERENCES product(productId) ,
-        FOREIGN KEY(vendorId) REFERENCES vendor(vendorId)
+        productId MEDIUMINT UNSIGNED not null,
+        vendorId INT MEDIUMINT UNSIGNED not nul,
+        FOREIGN KEY (productId) REFERENCES product(productId) ON UPDATE CASCADE ON DELETE RESTRICT,
+        FOREIGN KEY(vendorId) REFERENCES vendor(vendorId) ON UPDATE CASCADE ON DELETE RESTRICT
     );
     `)
  //inventory
@@ -60,7 +60,7 @@ exports.init = async (client) => {
      CREATE TABLE IF NOT EXISTS inventory
      (
         inventoryId MEDIUMINT UNSIGNED not null AUTO_INCREMENT primary key,
-        productId int not null,
+        productId MEDIUMINT UNSIGNED not nul,
         FOREIGN KEY(productId) REFERENCES product(productId) ,
         quantity int,
         sold int 
@@ -74,8 +74,8 @@ exports.init = async (client) => {
     (
         buyingListId MEDIUMINT UNSIGNED not null AUTO_INCREMENT primary key,
         createdOn DATETIME not null,
-        vendorId int not null,
-        bookId int not null,
+        vendorId MEDIUMINT UNSIGNED not null,
+        bookId MEDIUMINT UNSIGNED not nul,
         FOREIGN KEY(bookId) REFERENCES product(bookId) ON UPDATE CASCADE ON DELETE RESTRICT,
         FOREIGN KEY(vendorId) REFERENCES product(vendorId) ON UPDATE CASCADE ON DELETE RESTRICT
 
