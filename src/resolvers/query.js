@@ -14,14 +14,26 @@ export const getAllBooks = async (args, context) => {
 
         await db.end()
         //console.log(allBooks)
-     return allBooks.map(x => {
-        
-            x.bookTitle,
-             x.vendorName
-        })
+   return allBooks.map((x) =>{
+       return {
+        title: x.bookTitle,
+        vendor: x.vendorName
+       }
+   })
 
+     //console.log(books)
+
+     //return books
         
     } catch (e){
         return e
     }
 }
+
+/*
+
+allBooks.map(x => {
+        
+            title: x.bookTitle
+             vendor:x.vendorName
+*/
