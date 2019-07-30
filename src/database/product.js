@@ -48,6 +48,7 @@ exports.init = async (client) => {
         bookGrade varchar(250) not null,
         dateUploaded DATETIME default,
         price DECIMAL not null,
+        bookImage varchar(255),
         bookEdition varchar(250) not null,
         productId MEDIUMINT UNSIGNED not null,
         vendorId  MEDIUMINT UNSIGNED not null,
