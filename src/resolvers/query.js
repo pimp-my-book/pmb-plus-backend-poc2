@@ -17,7 +17,15 @@ export const getAllBooks = async (args, context) => {
    return allBooks.map((x) =>{
        return {
         title: x.bookTitle,
-        vendor: x.vendorName
+        vendor: x.vendorName,
+        ID: x.bookId,
+        price: x.bookPrice,
+        image: x.bookImage,
+        author: x.bookAuthor,
+        ISBN: x.bookISBN,
+        edition: x.bookEdition,
+        grade: x.bookGrade
+        
        }
    })
 
