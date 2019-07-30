@@ -29,19 +29,17 @@ export const getAllBooks = async (args, context) => {
        }
    })
 
-     //console.log(books)
-
-     //return books
-        
+    
     } catch (e){
         return e
     }
 }
 
-/*
+export const getOneBook = async (args, contenxt) =>{
 
-allBooks.map(x => {
-        
-            title: x.bookTitle
-             vendor:x.vendorName
-*/
+    try {
+
+    } catch (e){
+        return e
+    }
+}
