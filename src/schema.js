@@ -103,6 +103,7 @@ type Query {
      """
      getBooksByVendor(vendor:String!): [Book]
      getAllBooks: [Book]
+     getOneBook(bookId: Int): Book
 }
 `
 
