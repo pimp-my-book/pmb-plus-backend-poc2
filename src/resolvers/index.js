@@ -1,11 +1,11 @@
-import {hello, getAllBooks} from "./query";
+import {hello, getAllBooks, getOneBook} from "./query";
 import {addBook, addVendor} from "./mutation";
 import {db} from '../../libs/db'
 export const resolvers = {
     Query: {
         hello: (root, args, context) => hello(args, context),
         connection: () => `${db}`,
-        //getOneBook: (root, args, context) => getOneBook(args, context),
+        getOneBook: (root, args, context) => getOneBook(args, context),
         getAllBooks: (root, args, context) => getAllBooks(args,context)
     },
     Mutation : {
