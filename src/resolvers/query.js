@@ -13,7 +13,7 @@ export const getAllBooks = async (args, context) => {
         inner JOIN vendor on book.vendorId = vendor.vendorId`)
 
         await db.end()
-        console.log(allBooks)
+       
    return allBooks.map((x) =>{
        return {
         title: x.bookTitle,
