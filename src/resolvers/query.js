@@ -39,6 +39,11 @@ export const getOneBook = async (args, contenxt) =>{
 
     try {
 
+        const singleBook = db.query(`SELECT book.bookId, book.bookAuthor, book.bookISBN,  book.bookGrade, book.price , book.bookEdition , book.bookTitle, book.bookImage, vendor.vendorName 
+        FROM book
+        inner JOIN vendor on book.vendorId = vendor.vendorId
+        WHERE bookId = (?)`, [args.ID])
+
     } catch (e){
         return e
     }
