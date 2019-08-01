@@ -1,47 +1,95 @@
 
 
-var common = require('./aurora')
+var common = require('../database/product')
 import db from '../../libs/db'
 
-export const addBook = async (args, context) => {
+export const addBook = async ({input: args}, context) => {
     
-    
-console.log(args.title)
+await common.init(db)
 
-console.log(db)
-
-try{
-
-    await db.connect()
-
-    await db.query(`
-    CREATE TABLE IF NOT EXISTS books
-    (
-        id MEDIUMINT UNSIGNED not null AUTO_INCREMENT,
-        title varchar(100) not null,
-        author varchar(100) not null,
-        PRIMARY KEY (id)
-    );
-    `)
-
-    
-    let con = db.getClient()
-   
-    let book = await db.query('INSERT INTO books (title,author) VALUES(?,?)', [args.title ,args.author ]);
-   
-    await db.end()
-      
-    return {
-        title: args.title,
-        author: args.author
+try {
+    const addBookInput ={
+        productName: args.productName,
+        productDescription: args.productDescription,
         
+        price: args.price,
+        vendor: args.vendor,
+        image: args.image,
+        bookEdition: args.bookEdition,
+        title: args.productName,
+        author: args.author,
+        ISBN: args.ISBN,
+        grade: args.grade
     }
-    
 
-} catch(e){
+   let book = await db.query(`INSERT INTO book (bookAuthor, bookISBN , buyer,bookGrade, productId, vendorId, bookTitle, price, bookEdition) VALUES(?,?,?,?,?,?,?,?,?)`, [
+       addBookInput.author,
+       addBookInput.ISBN,
+       "Tahmir Hassish",
+       addBookInput.grade,
+       1,
+       addBookInput.vendor,
+       addBookInput.productName,
+       addBookInput.price,
+       addBookInput.bookEdition
+   ])
+
+   await db.end()
+
+   return {
+    productName: args.productName,
+    productDescription: args.productDescription,
+    
+    price: args.price,
+    vendor: args.vendor,
+    image: args.image,
+    
+    title: args.title,
+    author: args.author,
+    ISBN: args.ISBN,
+    grade: args.grade
+   }
+} catch (e){
     return e
 }
 
+}
+
+export const addVendor = async ({input: args}, context) => {
+
+    await common.init(db)
+
+    try{
+        const addVendorinput = {
+            vendorName: args.vendorName,
+        
+            vendorDescription: args.vendorDescription,
+        
+            vendorWebsite: args.vendorWebsite,
+                vendorAddress: args.vendorAddress,
+        
+            vendorEmail: args.vendorEmail,
+        
+            }
+            console.log(addVendorinput)
+            let vendor = await db.query('INSERT INTO vendor (vendorName,vendorDescription,vendorWebsite,vendorAddress,vendorEmail) VALUES(?, ?, ?, ?, ?)', [addVendorinput.vendorName, addVendorinput.vendorDescription, addVendorinput.vendorWebsite, addVendorinput.vendorAddress, addVendorinput.vendorEmail])
+   
+            await db.end()
+    return {
+        vendorName: args.vendorName,
+        vendorAddress: args.vendorAddress,
+        vendorEmail: args.vendorEmail,
+        vendorDescription: args.vendorDescription,
+        vendorWebsite: args.vendorWebsite
+
+    }
+   
+   
+        } catch(e){
+        return e
+    }
+
+    
 }
 
 

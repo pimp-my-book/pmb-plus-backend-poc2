@@ -10,12 +10,24 @@ input addBookInput {
     price: String!
     vendor: String!
     image: String!
-    
+    edition: String!
     title: String!
     author: String!
     ISBN: String!
     grade: String!
   
+}
+
+
+"""
+Add Vendor Input
+"""
+input addVendorInput {
+    vendorName: String!
+    vendorDescription: String!
+    vendorWebsite: String
+    vendorAddress: String!
+    vendorEmail: String!
 }
 
 """
@@ -26,6 +38,8 @@ type BuyingList {
     store: String!
     books:[Book]!
 }
+
+
 
 """
 Vendor Type
@@ -55,12 +69,10 @@ interface Product {
     
 }
 """
-A book type that is an extension of a product
+A book type 
 """
-type Book implements Product {
+type Book  {
     ID: Int!
-    productName: String!
-    productDescription: String!
     dateUploaded: String!
     price: String!
     vendor: String!
@@ -69,6 +81,7 @@ type Book implements Product {
     title: String!
     author: String!
     ISBN: String!
+    edition: String!
     grade: String!
    
 }
@@ -78,8 +91,8 @@ type S3Payload {
 }
 type Mutation {
     
-    addBook(title: String!
-        author: String!) : Book
+    addBook(input: addBookInput) : Book
+    addVendor(input: addVendorInput): Vendor
     addBooks(fileName: String!, fileType: String!): S3Payload!
 }
 type Query {
@@ -89,6 +102,8 @@ type Query {
      A query to get all the books a vendor has posted. 
      """
      getBooksByVendor(vendor:String!): [Book]
+     getAllBooks: [Book]
+     getOneBook(ID: Int): Book
 }
 `
 
